@@ -1,0 +1,48 @@
+server:
+  port: 9080
+spring:
+  application:
+    name: thirdparty-staticres-services
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.110.55.97:8848
+        namespace: 8b602b7f-0b2a-49f4-a4d6-f899d42d5d13
+        group: SC_PORTAL_GROUP
+      config:
+        file-extension: yaml
+        server-addr: 10.110.55.97:8848
+        namespace: 6c663746-ef24-4ad6-b1f7-2dcc53449902
+        extension-configs:
+          - data-id: framework-default.yaml
+            group: SC_PORTAL_GROUP
+            refresh: true
+          - data-id: logback-config.yaml
+            group: SC_PORTAL_GROUP
+            refresh: true
+          - data-id: redis-config.yaml
+            group: SC_PORTAL_GROUP
+            refresh: true
+          - data-id: db-config.yaml
+            group: SC_PORTAL_GROUP
+            refresh: true
+          - data-id: cat-config.yaml
+            group: SC_PORTAL_GROUP
+          - data-id: zipkin-config.yaml
+            group: SC_PORTAL_GROUP
+            refresh: true
+          - data-id: thirdpart-api-addr-config.yaml
+            group: SC_PORTAL_GROUP
+            refresh: true
+rocketmq:
+  name-server: 10.110.55.96:9876
+  producer:
+    group: ${spring.application.name}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]
+  endpoint:
+    health:
+      show-details: always
